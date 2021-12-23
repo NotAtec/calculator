@@ -3,11 +3,14 @@ body {
 }
 
 #calculator {
-    max-width: 25vw;
+    max-width: 75vw;
+    max-height: 80vh;
     border-radius: 8px;
     padding: 20px;
     height: 500px;
     width: 356px;
+    border: 2px solid black;
+    gap: 8px;
 }
 
 .size1 {
@@ -18,6 +21,47 @@ body {
     flex: 2;
 }
 
-div {
+
+
+#display {
+    margin-bottom: 8px;
+    height: 75px;
+    position: relative;
+    border: 2px solid black;
+    border-radius: 8px;
+}
+
+#numbers {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 8px 8px;
+    font-size: 1.75em;
+    margin: 0;
+}
+
+.row {
+    gap: 16px;
+}
+
+.num {
+    flex: 3;
+    gap: 8px;
+}
+
+.opr {
+    flex: 2;
+    gap: 8px;
+}
+button {
     border: 1px solid black;
+    border-radius: 8px;
+}
+
+#decimal {
+    width: 63px;
+}
+
+#zero { 
+    flex: 65;
 }

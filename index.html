@@ -10,32 +10,48 @@
 </head>
 <body class="container centered">
     <div class="container col" id="calculator">
-        <div class="size2" id="display">830283</div>
-        <div class="container size1" id="row-1">
-            <button class="size1">7</button>
-            <button class="size1">8</button>
-            <button class="size1">9</button>
-            <button class="size1">/</button>
-            <button class="size1">x</button>
+        <div id="display"><p id="numbers">830283</p></div>
+        <div class="container size1 row" id="row-1">
+            <div class="container num">
+                <button class="size1">7</button>
+                <button class="size1">8</button>
+                <button class="size1">9</button>
+            </div>
+            <div class="container opr">
+                <button class="size1">/</button>
+                <button class="size1">x</button>
+            </div>
         </div>
-        <div class="container size1" id="row-2">
-            <button class="size1">4</button>
-            <button class="size1">5</button>
-            <button class="size1">6</button>
-            <button class="size1">+</button>
-            <button class="size1">-</button>
+        <div class="container size1 row" id="row-2">
+            <div class="container num">
+                <button class="size1">4</button>
+                <button class="size1">5</button>
+                <button class="size1">6</button>
+            </div>
+            <div class="container opr">
+                <button class="size1">+</button>
+                <button class="size1">-</button>
+            </div>
         </div>
-        <div class="container size1" id="row-3">
-            <button class="size1">1</button>
-            <button class="size1">2</button>
-            <button class="size1">3</button>
-            <button class="size1">C</button>
-            <button class="size1">AC</button>
+        <div class="container size1 row" id="row-3">
+            <div class="container num">
+                <button class="size1">1</button>
+                <button class="size1">2</button>
+                <button class="size1">3</button>
+            </div>
+            <div class="container opr">
+                <button class="size1">C</button>
+                <button class="size1">AC</button>
+            </div>
         </div>
-        <div class="container size1" id="row-4">
-            <button class="size2">0</button>
-            <button class="size1">.</button>
-            <button class="size2">=</button>
+        <div class="container size1 row" id="row-4">
+            <div class="container num">
+                <button id="zero">0</button>
+                <button id="decimal">.</button>
+            </div>
+            <div class="container opr">
+                <button class="size1"id="equal">=</button>
+            </div>
         </div>
     </div>
     <script src="js/script.js"></script>
