@@ -1,0 +1,14 @@
+/*Import using <link rel="stylesheet" src="css/flexsetup.css">*/
+
+.container {
+    display: flex
+}
+
+.centered {
+    justify-content: center;
+    align-items: center;
+}
+
+.col {
+    flex-direction: column;
+}

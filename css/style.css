@@ -1,0 +1,15 @@
+body {
+    height: 100vh;
+}
+
+#calculator {
+    height: 20vh;
+}
+
+.size1 {
+    flex: 1;
+}
+
+.size2 {
+    flex: 2;
+}
