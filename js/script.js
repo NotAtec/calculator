@@ -84,20 +84,8 @@ function displayString() {
     screen.innerText = display;
 }
 
-function displayTest() {
-    screen = document.getElementById('numbers');
-    screen.innerText = display;
-}
-
 function truncate() {
-    screen = document.getElementById('numbers');
-    displaySize = document.getElementById('display').clientWidth;
-    while (screen.clientWidth > displaySize) {
-        let displayArray = display.split('');
-        displayArray.pop();
-        display = displayArray.join('');
-        displayTest();
-    }
+    //TODO: truncation
 }
 
 function resetCalculator() {
