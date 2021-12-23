@@ -36,7 +36,7 @@ function numberHandler(id) {
     if (display == '0' || displayBool == true) {
         display = '';
     } 
-    if (id == '0' && operator == 'divide') {
+    if (id == '0' && display == '0' && operator == 'divide') {
         display = 'I\'m dissapointed.'
     } else {
         display += id;
@@ -70,7 +70,7 @@ function decimalHandler() {
 }
 
 function backspace() {
-    displayArray = display.split('');
+    const displayArray = display.split('');
     if (displayArray.pop() == '.') {
         decimal = false;
     }
@@ -79,8 +79,13 @@ function backspace() {
 }
 
 function displayString() {
+    display = truncate(display, 14);
     screen = document.getElementById('numbers');
     screen.innerText = display;
+}
+
+function truncate(str, n) {
+    return (str.length > n) ? str.substr(0, n-1) : str;
 }
 
 function resetCalculator() {
