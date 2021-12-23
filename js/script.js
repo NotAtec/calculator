@@ -85,7 +85,7 @@ function displayString() {
 }
 
 function truncate(str, n) {
-    return (str.length > n) ? str.substr(0, n-1) : str;
+    return (str.length > n) ? str.substr(0, n) : str;
 }
 
 function resetCalculator() {
@@ -104,6 +104,7 @@ function equalHandler() {
     operator = '';
     displayString();
 }
+
 function operate(op, a, b) {
     switch (op) {
         case 'add':
