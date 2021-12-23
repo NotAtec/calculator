@@ -79,13 +79,25 @@ function backspace() {
 }
 
 function displayString() {
-    display = truncate(display, 14);
+    truncate();
     screen = document.getElementById('numbers');
     screen.innerText = display;
 }
 
-function truncate(str, n) {
-    return (str.length > n) ? str.substr(0, n) : str;
+function displayTest() {
+    screen = document.getElementById('numbers');
+    screen.innerText = display;
+}
+
+function truncate() {
+    screen = document.getElementById('numbers');
+    displaySize = document.getElementById('display').clientWidth;
+    while (screen.clientWidth > displaySize) {
+        let displayArray = display.split('');
+        displayArray.pop();
+        display = displayArray.join('');
+        displayTest();
+    }
 }
 
 function resetCalculator() {
