@@ -3,7 +3,11 @@ body {
 }
 
 #calculator {
-    height: 20vh;
+    max-width: 25vw;
+    border-radius: 8px;
+    padding: 20px;
+    height: 500px;
+    width: 356px;
 }
 
 .size1 {
@@ -12,4 +16,8 @@ body {
 
 .size2 {
     flex: 2;
+}
+
+div {
+    border: 1px solid black;
 }
