@@ -1,5 +1,8 @@
 let display = '0';
+let previous = '';
+let operator = '';
 let decimal = false;
+let displayBool = false;
 const buttons = document.querySelectorAll('button');
 
 buttons.forEach(button => {
@@ -16,6 +19,10 @@ function buttonHandler(e) {
             break;
         case 'reset':
             resetCalculator();
+            break;
+        case 'equal':
+            equalHandler();
+            break;
         default:
             if (e.target.classList.contains('operator')) {
                 operatorHandler(e.target.id);
@@ -26,11 +33,30 @@ function buttonHandler(e) {
 }
 
 function numberHandler(id) {
-    console.log(id);
+    if (display == '0' || displayBool == true) {
+        display = '';
+    } 
+    if (id == '0' && operator == 'divide') {
+        display = 'I\'m dissapointed.'
+    } else {
+        display += id;
+    }
+    displayString();
 }
 
 function operatorHandler(id) {
-    console.log(id);
+    if (operator != '') {
+        display = operate(operator, previous, display);
+        previous = display;
+        operator = id;
+        displayBool = true;
+    } else {
+        previous = display;
+        operator = id;
+        display = '';
+    }
+    displayString();
+
 }
 
 function decimalHandler() {
@@ -57,6 +83,35 @@ function displayString() {
     screen.innerText = display;
 }
 
+function resetCalculator() {
+    display = '0';
+    previous = '';
+    decimal = false;
+    operator = '';
+    displayBool = false;
+    displayString();
+}
+
+function equalHandler() {
+    const prev2 = display;
+    display = operate(operator, previous, display);
+    previous = prev2;
+    operator = '';
+    displayString();
+}
+function operate(op, a, b) {
+    switch (op) {
+        case 'add':
+            return add(a,b);
+        case 'subtract':
+            return subtract(a,b);
+        case 'multiply':
+            return multiply(a,b);
+        case 'divide':
+            return divide(a,b);
+    }
+}
+
 function add(a, b) {
     return +a + +b;
 }
@@ -71,17 +126,4 @@ function multiply(a, b) {
 
 function divide(a, b) {
     return +a / +b
-}
-
-function operate(op, a, b) {
-    switch (op) {
-        case 'add':
-            return add(a,b);
-        case 'subtract':
-            return subtract(a,b);
-        case 'multiply':
-            return multiply(a,b);
-        case 'divide':
-            return divide(a,b);
-    }
 }

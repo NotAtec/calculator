@@ -62,7 +62,7 @@ button:active {
     width: 63px;
 }
 
-#zero { 
+.zero { 
     flex: 65;
 }
 
