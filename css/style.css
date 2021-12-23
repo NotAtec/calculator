@@ -12,6 +12,7 @@ body {
     width: 356px;
     border: 2px solid black;
     gap: 8px;
+    background-color: #c1c1c1;
 }
 
 #display {
@@ -19,7 +20,7 @@ body {
     height: 75px;
     position: relative;
     border: 2px solid black;
-    border-radius: 8px;
+    background-color: #7DF9FF;
 }
 
 #numbers {
@@ -33,17 +34,17 @@ body {
 }
 
 .row {
-    gap: 16px;
+    gap: 8px;
 }
 
 .num {
     flex: 3;
-    gap: 8px;
+    gap: 4px;
 }
 
 .opr {
     flex: 2;
-    gap: 8px;
+    gap: 4px;
 }
 
 button {
@@ -63,4 +64,12 @@ button:active {
 
 #zero { 
     flex: 65;
+}
+
+.opr button {
+    background-color: #00A36C;
+}
+
+.opr button:active {
+    box-shadow: inset 0px 5px 5px #121212;
 }
