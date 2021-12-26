@@ -1,8 +1,9 @@
-let display = '0';
-let previous = '';
-let operator = '';
-let decimal = false;
-let displayBool = false;
+let value1 = "";
+let value2 = "";
+let display = "0";
+let operator = "";
+let decimalBool = false;
+
 const buttons = document.querySelectorAll('button');
 
 buttons.forEach(button => {
@@ -10,8 +11,33 @@ buttons.forEach(button => {
 });
 
 function buttonHandler(e) {
-    
+    console.log(this.classList);
+    if (this.classList.contains('operator')) {
+        operatorHandler(this.id);
+    } else {
+        numberHandler(this.id);
+    }
+    updateScreen();
 }
+
+function operatorHandler(id) {
+
+}
+
+function numberHandler(id) {
+    if (display == '0') {
+        display = '';
+    }
+    display += id;
+    console.log(display);
+}
+
+function updateScreen() {
+    let text = document.getElementById('numbers');
+    text.innerText = display;
+
+}
+
 /* basic functions */
 function operate(op, a, b) {
     switch (op) {

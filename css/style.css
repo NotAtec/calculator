@@ -27,7 +27,7 @@ body {
 #numbers {
     position: absolute;
     bottom: 0;
-    left: 0;
+    right: 0;
     padding: 8px 8px;
     font-size: 1.75em;
     margin: 0;
