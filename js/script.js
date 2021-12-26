@@ -5,8 +5,6 @@ let operator = "";
 let decimalBool = false;
 let secondOperation = false;
 
-/* You should round answers with long decimals so that they don’t overflow the screen. */
-
 const buttons = document.querySelectorAll('button');
 
 buttons.forEach(button => {
@@ -55,7 +53,6 @@ function numberHandler(id) {
 }
 
 function updateScreen(id) {
-    /* TODO: Add required checks to prevent non-normal behaviour */
     let text = document.getElementById('numbers');
     text.innerText = display;
 }
