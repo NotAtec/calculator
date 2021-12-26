@@ -19,7 +19,7 @@ function buttonHandler(e) {
     } else {
         numberHandler(this.id);
     }
-    updateScreen();
+    updateScreen(this.id);
 }
 
 function operatorHandler(id) {
@@ -47,10 +47,14 @@ function numberHandler(id) {
     if (secondOperation) {
         display = '';
     }
-    display += id;
+    if (id == 'decimal') {
+        display += '.';
+    } else {
+        display += id;
+    }
 }
 
-function updateScreen() {
+function updateScreen(id) {
     /* TODO: Add required checks to prevent non-normal behaviour */
     let text = document.getElementById('numbers');
     text.innerText = display;
@@ -62,7 +66,6 @@ function resetCalculator() {
     value2 = '';
     display = '0';
     operator = '';
-    decimalBool = false;
     secondOperation = false;
 }
 
