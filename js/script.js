@@ -3,6 +3,7 @@ let value2 = "";
 let display = "0";
 let operator = "";
 let decimalBool = false;
+let secondOperation = false;
 
 const buttons = document.querySelectorAll('button');
 
@@ -41,6 +42,9 @@ function numberHandler(id) {
     if (display == '0') {
         display = '';
     }
+    if (secondOperation) {
+        display = '';
+    }
     display += id;
 }
 
@@ -58,6 +62,8 @@ function resetCalculator() {
 function operation(opr) {
     if (operator != '') {
         evaluate();
+        operator = opr;
+        secondOperation = true;
     } else {
         operator = opr;
         value1 = display;
@@ -74,8 +80,12 @@ function evaluate() {
         display = value1;
         return;
     }
-    value2 = display;
-    display = operate(operator, value1, value2).toString();
+    
+    display = operate(operator, value1, display).toString();
+    value1 = display;
+    value2 = '';
+    operator = '';
+    secondOperation = false;
 }
 
 /* basic functions */
