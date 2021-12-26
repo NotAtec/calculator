@@ -59,6 +59,7 @@ function resetCalculator() {
 
 function operation(opr) {
     if (operator != '') {
+        value2 = display;
         evaluate();
     } else {
         operator = opr;
