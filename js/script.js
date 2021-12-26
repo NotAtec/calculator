@@ -11,7 +11,6 @@ buttons.forEach(button => {
 });
 
 function buttonHandler(e) {
-    console.log(this.classList);
     if (this.classList.contains('operator')) {
         operatorHandler(this.id);
     } else {
@@ -43,7 +42,6 @@ function numberHandler(id) {
         display = '';
     }
     display += id;
-    console.log(display);
 }
 
 function updateScreen() {
@@ -59,7 +57,6 @@ function resetCalculator() {
 
 function operation(opr) {
     if (operator != '') {
-        value2 = display;
         evaluate();
     } else {
         operator = opr;
@@ -69,11 +66,20 @@ function operation(opr) {
 }
 
 function evaluate() {
-
+    if (operator == '') {
+        return;
+    }
+    
+    if (display == '') {
+        display = value1;
+        return;
+    }
+    value2 = display;
+    display = operate(operator, value1, value2).toString();
 }
 
 /* basic functions */
-function operate(op, a, b) { /* Possibly restructure to combine operate & evaluate */
+function operate(op, a, b) {
     switch (op) {
         case 'add':
             return add(a,b);
