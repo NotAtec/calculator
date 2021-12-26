@@ -2,7 +2,6 @@ let value1 = "";
 let value2 = "";
 let display = "0";
 let operator = "";
-let decimalBool = false;
 let secondOperation = false;
 
 const buttons = document.querySelectorAll('button');
@@ -12,15 +11,15 @@ buttons.forEach(button => {
 });
 
 function buttonHandler(e) {
-    if (this.classList.contains('operator')) {
-        operatorHandler(this.id);
+    if (this.classList.contains('NaN')) {
+        notNumberHandler(this.id);
     } else {
         numberHandler(this.id);
     }
     updateScreen(this.id);
 }
 
-function operatorHandler(id) {
+function notNumberHandler(id) {
     switch (id) {
         case "delete":
             let displayArr = display.split('');
@@ -33,6 +32,9 @@ function operatorHandler(id) {
         case "equal":
             evaluate();
             break;
+        case "decimal":
+            decimalHandling();
+            break;
         default:
             operation(id);
     }
@@ -44,9 +46,6 @@ function numberHandler(id) {
     }
     if (secondOperation) {
         display = '';
-    }
-    if (id == 'decimal') {
-        display += '.';
     } else {
         display += id;
     }
@@ -93,6 +92,14 @@ function evaluate() {
     value2 = '';
     operator = '';
     secondOperation = false;
+}
+
+function decimalHandling() {
+    if (display.includes('.')) {
+        return;
+    } else {
+        display += '.';
+    }
 }
 
 /* basic functions */
