@@ -21,7 +21,19 @@ function buttonHandler(e) {
 }
 
 function operatorHandler(id) {
-
+    switch (id) {
+        case "delete":
+            backspace();
+            break;
+        case "reset":
+            resetCalculator();
+            break;
+        case "equal":
+            evaluate();
+            break;
+        default:
+            operation();
+    }
 }
 
 function numberHandler(id) {
@@ -33,8 +45,28 @@ function numberHandler(id) {
 }
 
 function updateScreen() {
+    /* TODO: Add required checks to prevent non-normal behaviour */
     let text = document.getElementById('numbers');
     text.innerText = display;
+
+}
+
+/* Handling functions */
+function backspace() {
+    let displayArr = display.split('');
+    displayArr.pop();
+    display = displayArr.join('');
+}
+
+function resetCalculator() {
+
+}
+
+function evaluate() {
+
+}
+
+function operation() {
 
 }
 
