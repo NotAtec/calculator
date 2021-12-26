@@ -34,7 +34,7 @@ function operatorHandler(id) {
             evaluate();
             break;
         default:
-            operation();
+            operation(id);
     }
 }
 
@@ -50,28 +50,29 @@ function updateScreen() {
     /* TODO: Add required checks to prevent non-normal behaviour */
     let text = document.getElementById('numbers');
     text.innerText = display;
-
 }
 
 /* Handling functions */
-function backspace() {
+function resetCalculator() {
 
 }
 
-function resetCalculator() {
-
+function operation(opr) {
+    if (operator != '') {
+        evaluate();
+    } else {
+        operator = opr;
+        value1 = display;
+        display = '';
+    }
 }
 
 function evaluate() {
 
 }
 
-function operation() {
-
-}
-
 /* basic functions */
-function operate(op, a, b) {
+function operate(op, a, b) { /* Possibly restructure to combine operate & evaluate */
     switch (op) {
         case 'add':
             return add(a,b);
