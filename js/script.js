@@ -23,7 +23,9 @@ function buttonHandler(e) {
 function operatorHandler(id) {
     switch (id) {
         case "delete":
-            backspace();
+            let displayArr = display.split('');
+            displayArr.pop();
+            display = displayArr.join('');
             break;
         case "reset":
             resetCalculator();
@@ -53,9 +55,7 @@ function updateScreen() {
 
 /* Handling functions */
 function backspace() {
-    let displayArr = display.split('');
-    displayArr.pop();
-    display = displayArr.join('');
+
 }
 
 function resetCalculator() {
