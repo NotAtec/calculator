@@ -104,6 +104,7 @@ function resetCalculator() {
     operator = '';
     secondOperation = false;
     displayvalue = '0';
+    evaluated = false;
 }
 
 function operation(opr) {
