@@ -4,6 +4,7 @@ let display = "0";
 let displayvalue = "0";
 let operator = "";
 let secondOperation = false;
+let evaluated = false;
 
 const buttons = document.querySelectorAll('button');
 
@@ -89,6 +90,9 @@ function updateScreen() {
     } else {
         text.innerText = displayvalue;
     }
+    if (evaluated) {
+        displayvalue = '0';
+    }
     
 }
 
@@ -132,6 +136,7 @@ function evaluate() {
     updateScreen();
     checkRounding();
     dropTrailing();
+    evaluated = true;
 }
 
 function decimalHandling() {
