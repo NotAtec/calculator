@@ -16,8 +16,7 @@ function buttonHandler(e) {
     } else {
         numberHandler(this.id);
     }
-    checkRounding();
-    dropTrailing();
+
     updateScreen();
 }
 
@@ -46,9 +45,9 @@ function numberHandler(id) {
     }
     if (secondOperation) {
         display = '';
-    } else {
-        display += id;
-    }
+    } 
+    display += id;
+
 }
 
 function checkRounding() {
@@ -77,6 +76,7 @@ function dropTrailing() {
         }
     }
 }
+
 function updateScreen() {
     let text = document.getElementById('numbers');
     text.innerText = display;
@@ -118,6 +118,9 @@ function evaluate() {
     value2 = '';
     operator = '';
     secondOperation = false;
+    updateScreen();
+    checkRounding();
+    dropTrailing();
 }
 
 function decimalHandling() {
