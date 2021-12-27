@@ -1,6 +1,7 @@
 let value1 = "";
 let value2 = "";
 let display = "0";
+let displayvalue = "0";
 let operator = "";
 let secondOperation = false;
 
@@ -57,14 +58,18 @@ function checkRounding() {
     if (display.includes('.')) {
         while (numberWidth >= displayWidth) {
             display = display.slice(0, -1);
+            displayvalue = '0';
             updateScreen();
             displayWidth = document.getElementById('display').clientWidth;
             numberWidth = document.getElementById('numbers').clientWidth;
         }
     } else {
-        /* TD: Add scientific Notation */
+        if (numberWidth > displayWidth) {
+            displayvalue = `${display.charAt(0)}.${display.charAt(1)} * 10 ^ ${display.length - 1}`
+        } else {
+            displayvalue = '0';
+        }
     }
-
 }
 
 function dropTrailing() {
@@ -79,7 +84,12 @@ function dropTrailing() {
 
 function updateScreen() {
     let text = document.getElementById('numbers');
-    text.innerText = display;
+    if (displayvalue == '0') {
+        text.innerText = display;
+    } else {
+        text.innerText = displayvalue;
+    }
+    
 }
 
 /* Handling functions */
@@ -89,6 +99,7 @@ function resetCalculator() {
     display = '0';
     operator = '';
     secondOperation = false;
+    displayvalue = '0';
 }
 
 function operation(opr) {
