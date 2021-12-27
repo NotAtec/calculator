@@ -10,6 +10,7 @@ The calculator works like a basic school calculator, so the order of input is re
 ## Features
 - 0 to 9 keypads for input
 - Basic arithmetic input (/ | x | + | -)
+- Scientific notation on big integers
 - Backspace
 - Reset
 - Equals operator, which can also be invoked by pressing a second operator button.
