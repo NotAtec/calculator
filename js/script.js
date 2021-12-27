@@ -16,15 +16,14 @@ function buttonHandler(e) {
     } else {
         numberHandler(this.id);
     }
-    updateScreen(this.id);
+    updateScreen();
+    checkRounding();
 }
 
 function notNumberHandler(id) {
     switch (id) {
         case "delete":
-            let displayArr = display.split('');
-            displayArr.pop();
-            display = displayArr.join('');
+            display = display.slice(0, -1)
             break;
         case "reset":
             resetCalculator();
@@ -51,7 +50,23 @@ function numberHandler(id) {
     }
 }
 
-function updateScreen(id) {
+function checkRounding() {
+    let displayWidth = document.getElementById('display').clientWidth;
+    let numberWidth = document.getElementById('numbers').clientWidth;
+
+    if (display.includes('.')) {
+        while (numberWidth >= displayWidth) {
+            display = display.slice(0, -1)
+            updateScreen();
+            displayWidth = document.getElementById('display').clientWidth;
+            numberWidth = document.getElementById('numbers').clientWidth;
+        }
+    } else {
+        /* TD: Add scientific Notation */
+    }
+
+}
+function updateScreen() {
     let text = document.getElementById('numbers');
     text.innerText = display;
 }
