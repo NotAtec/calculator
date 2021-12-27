@@ -16,8 +16,9 @@ function buttonHandler(e) {
     } else {
         numberHandler(this.id);
     }
-    updateScreen();
     checkRounding();
+    dropTrailing();
+    updateScreen();
 }
 
 function notNumberHandler(id) {
@@ -51,12 +52,12 @@ function numberHandler(id) {
 }
 
 function checkRounding() {
+    updateScreen();
     let displayWidth = document.getElementById('display').clientWidth;
     let numberWidth = document.getElementById('numbers').clientWidth;
-
     if (display.includes('.')) {
         while (numberWidth >= displayWidth) {
-            display = display.slice(0, -1)
+            display = display.slice(0, -1);
             updateScreen();
             displayWidth = document.getElementById('display').clientWidth;
             numberWidth = document.getElementById('numbers').clientWidth;
@@ -65,6 +66,16 @@ function checkRounding() {
         /* TD: Add scientific Notation */
     }
 
+}
+
+function dropTrailing() {
+    if (display.includes('.')) {
+        if (display.charAt(display.length - 1) == '.') {
+            return;
+        } else {
+            display = parseFloat(+display);
+        }
+    }
 }
 function updateScreen() {
     let text = document.getElementById('numbers');
