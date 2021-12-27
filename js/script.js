@@ -1,8 +1,9 @@
-let display = '0';
-let previous = '';
-let operator = '';
-let decimal = false;
-let displayBool = false;
+let value1 = "";
+let value2 = "";
+let display = "0";
+let operator = "";
+let secondOperation = false;
+
 const buttons = document.querySelectorAll('button');
 
 buttons.forEach(button => {
@@ -10,101 +11,127 @@ buttons.forEach(button => {
 });
 
 function buttonHandler(e) {
-    switch (e.target.id) {
-        case 'decimal':
-            decimalHandler();
+    if (this.classList.contains('NaN')) {
+        notNumberHandler(this.id);
+    } else {
+        numberHandler(this.id);
+    }
+
+    updateScreen();
+}
+
+function notNumberHandler(id) {
+    switch (id) {
+        case "delete":
+            display = display.slice(0, -1)
             break;
-        case 'delete':
-            backspace();
-            break;
-        case 'reset':
+        case "reset":
             resetCalculator();
             break;
-        case 'equal':
-            equalHandler();
+        case "equal":
+            evaluate();
+            break;
+        case "decimal":
+            decimalHandling();
             break;
         default:
-            if (e.target.classList.contains('operator')) {
-                operatorHandler(e.target.id);
-            } else {
-                numberHandler(e.target.id);
-            }  
+            operation(id);
     }
 }
 
 function numberHandler(id) {
-    if (display == '0' || displayBool == true) {
+    if (display == '0') {
+        display = '';
+    }
+    if (secondOperation) {
         display = '';
     } 
-    if (id == '0' && display == '0' && operator == 'divide') {
-        display = 'I\'m dissapointed.'
-    } else {
-        display += id;
-    }
-    displayString();
+    display += id;
+
 }
 
-function operatorHandler(id) {
-    if (operator != '') {
-        display = operate(operator, previous, display);
-        previous = display;
-        operator = id;
-        displayBool = true;
+function checkRounding() {
+    updateScreen();
+    let displayWidth = document.getElementById('display').clientWidth;
+    let numberWidth = document.getElementById('numbers').clientWidth;
+    if (display.includes('.')) {
+        while (numberWidth >= displayWidth) {
+            display = display.slice(0, -1);
+            updateScreen();
+            displayWidth = document.getElementById('display').clientWidth;
+            numberWidth = document.getElementById('numbers').clientWidth;
+        }
     } else {
-        previous = display;
-        operator = id;
+        /* TD: Add scientific Notation */
+    }
+
+}
+
+function dropTrailing() {
+    if (display.includes('.')) {
+        if (display.charAt(display.length - 1) == '.') {
+            return;
+        } else {
+            display = parseFloat(+display);
+        }
+    }
+}
+
+function updateScreen() {
+    let text = document.getElementById('numbers');
+    text.innerText = display;
+}
+
+/* Handling functions */
+function resetCalculator() {
+    value1 = '';
+    value2 = '';
+    display = '0';
+    operator = '';
+    secondOperation = false;
+}
+
+function operation(opr) {
+    if (operator != '') {
+        evaluate();
+        operator = opr;
+        secondOperation = true;
+    } else {
+        operator = opr;
+        value1 = display;
         display = '';
     }
-    displayString();
-
 }
 
-function decimalHandler() {
-    if (decimal) {
+function evaluate() {
+    if (operator == '') {
+        return;
+    }
+    
+    if (display == '') {
+        display = value1;
+        return;
+    }
+
+    display = operate(operator, value1, display).toString();
+    value1 = display;
+    value2 = '';
+    operator = '';
+    secondOperation = false;
+    updateScreen();
+    checkRounding();
+    dropTrailing();
+}
+
+function decimalHandling() {
+    if (display.includes('.')) {
         return;
     } else {
-        decimal = true;
         display += '.';
     }
-    displayString();
 }
 
-function backspace() {
-    const displayArray = display.split('');
-    if (displayArray.pop() == '.') {
-        decimal = false;
-    }
-    display = displayArray.join('');
-    displayString();
-}
-
-function displayString() {
-    truncate();
-    screen = document.getElementById('numbers');
-    screen.innerText = display;
-}
-
-function truncate() {
-    //TODO: truncation
-}
-
-function resetCalculator() {
-    display = '0';
-    previous = '';
-    decimal = false;
-    operator = '';
-    displayBool = false;
-    displayString();
-}
-
-function equalHandler() {
-    const prev2 = display;
-    display = operate(operator, previous, display);
-    previous = prev2;
-    operator = '';
-    displayString();
-}
-
+/* basic functions */
 function operate(op, a, b) {
     switch (op) {
         case 'add':
